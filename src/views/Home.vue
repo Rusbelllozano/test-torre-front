@@ -1,18 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <SearchUser msg="Type the username to find" />
+    <InfoUser />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import SearchUser from "@/components/searchUser.vue";
+import InfoUser from "@/components/infoUser.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld,
+    SearchUser,
+    InfoUser,
   },
 };
 </script>
+<style lang="scss" scoped>
+.home {
+  min-width: 450px;
+  max-width: 600px;
+}
+</style>

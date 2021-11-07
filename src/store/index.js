@@ -2,7 +2,7 @@ import { createStore } from "vuex";
 import axios from "axios";
 export default createStore({
   state: {
-    user_data: JSON.parse(localStorage.getItem("user_data")),
+    user_data: {},
     error_msg: "",
   },
   mutations: {
@@ -18,7 +18,7 @@ export default createStore({
       try {
         let user_data = await axios({
           method: "get",
-          url: process.env.VUE_APP_API_URL + username,
+          url: process.env.VUE_APP_API_URL + "get_user/" + username,
         });
         commit("setError", "");
         commit("setUser", user_data.data);
@@ -26,12 +26,7 @@ export default createStore({
           localStorage.setItem("user_data", JSON.stringify(user_data.data));
         }
       } catch (error) {
-        console.log(error.response.status);
-        if (error.response.status === 404) {
-          commit("setError", "You must type a username");
-        } else {
-          commit("setError", "Username doesn't exist");
-        }
+        commit("setError", "You must type a username");
       }
     },
   },

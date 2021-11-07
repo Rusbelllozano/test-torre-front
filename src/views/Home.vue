@@ -21,6 +21,6 @@ export default {
 <style lang="scss" scoped>
 .home {
   min-width: 450px;
-  max-width: 600px;
+  width: 500px;
 }
 </style>

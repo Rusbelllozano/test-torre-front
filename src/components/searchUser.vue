@@ -6,7 +6,7 @@
         <button>
           <font-awesome-icon icon="search" />
         </button>
-        <input type="text" v-model="username" />
+        <input type="text" v-model="username" placeholder="username" />
       </div>
       <div v-if="loading" class="lds-ellipsis">
         <div></div>
@@ -31,9 +31,13 @@ export default {
   },
   methods: {
     async searchUser() {
-      this.loading = true;
-      await this.$store.dispatch("GET_INFO_USER", this.username);
-      this.loading = false;
+      if (this.username) {
+        this.loading = true;
+        await this.$store.dispatch("GET_INFO_USER", this.username);
+        this.loading = false;
+      } else {
+        this.$store.commit("setError", "Type a username");
+      }
     },
   },
 };

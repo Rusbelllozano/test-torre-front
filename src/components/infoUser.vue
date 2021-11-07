@@ -15,7 +15,11 @@
         <StrengthsUser :strengths="user_data.strengths" />
       </div>
     </div>
-    <h1 v-else>{{ user_data.message }}</h1>
+    <h3 v-else>
+      {{
+        user_data.message ? user_data.message : "Here you will see your skils"
+      }}
+    </h3>
   </div>
 </template>
 
@@ -59,6 +63,12 @@ export default {
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 8px 0 rgba(163, 163, 163, 0.164);
+  p {
+    text-align: center;
+  }
+  h3 {
+    text-align: center;
+  }
 }
 .header__user {
   display: flex;
@@ -75,9 +85,11 @@ export default {
     display: flex;
     flex-direction: column;
     h3 {
+      text-align: left;
       margin: 0;
     }
     p {
+      text-align: left;
       font-size: 14px;
       margin: 5px 0;
     }

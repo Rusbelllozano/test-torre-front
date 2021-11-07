@@ -1,6 +1,6 @@
 <template>
   <div class="content__strengths">
-    <div v-for="(proficiencies, index) in toSort" :key="index">
+    <div v-for="(proficiencies, index) in array" :key="index">
       <div
         class="level__strengths"
         :class="{
@@ -11,7 +11,7 @@
           noexperience:
             proficiencies.proficiency === 'no-experience-interested',
         }"
-        @click="activeLevel(proficiencies.proficiency)"
+        @click="activeLevel(index)"
       >
         <div class="name__proficiency">
           <h3>{{ proficiencies.proficiency }}</h3>
@@ -74,7 +74,7 @@ export default {
   data() {
     return {
       user: "",
-      toSort: this.strengths.reduce((prev, current) => {
+      array: this.strengths.reduce((prev, current) => {
         let exists = prev.find((x) => x.proficiency === current.proficiency);
         if (!exists) {
           exists = {
@@ -95,12 +95,32 @@ export default {
       }, []),
     };
   },
+  watch: {
+    strengths(value) {
+      this.array = value.reduce((prev, current) => {
+        let exists = prev.find((x) => x.proficiency === current.proficiency);
+        if (!exists) {
+          exists = {
+            proficiency: current.proficiency,
+            strengths: [],
+            open: false,
+          };
+          prev.push(exists);
+        }
+        if (current != null) {
+          exists.strengths.push({
+            name: current.name,
+            id: current.id,
+            recommendations: current.recommendations,
+          });
+        }
+        return prev;
+      }, []);
+    },
+  },
   methods: {
-    activeLevel(proficiency) {
-      let findOne = this.toSort.find(
-        (prof) => proficiency === prof.proficiency
-      );
-      findOne.open = !findOne.open;
+    activeLevel(index) {
+      this.array[index].open = !this.array[index].open;
     },
   },
 };
@@ -119,6 +139,7 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
   margin-top: 5px;
   padding: 0 10px;
+  transition: 1s;
   .box__strength {
     display: flex;
     border-radius: 10px;
@@ -145,6 +166,7 @@ export default {
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
+  transition: .5s;
   .button__proficiency {
     cursor: pointer;
     font-size: 20px;
@@ -163,10 +185,11 @@ export default {
   }
 }
 .master {
-  background-color: rgba(0, 29, 74, 1);
+  background-color: rgb(24, 25, 73);
+  
 }
 .expert {
-  background-color: rgb(108, 207, 246);
+  background-color: rgba(0, 29, 74, 1);
 }
 .proficient {
   background-color: #123468;
@@ -175,6 +198,7 @@ export default {
   background: rgb(39, 71, 110);
 }
 .noexperience {
-  background-color: rgb(24, 25, 73);
+  background-color: rgb(108, 207, 246);
+  
 }
 </style>

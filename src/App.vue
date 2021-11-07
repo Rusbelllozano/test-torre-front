@@ -20,5 +20,6 @@ body {
   justify-content: center;
   align-content: center;
   color: #fff;
+  min-height: 100vh;
 }
 </style>

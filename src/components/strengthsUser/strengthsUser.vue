@@ -64,8 +64,8 @@
     </div>
     <div class="wrapper__list-empty" v-if="!array.length">
       <p>
-        No skills, please go to <a href="https://torre.co">Torre.co</a> and add
-        someones
+        No skills <br />
+        Please go to <a href="https://torre.co">Torre.co</a> and add someones
       </p>
     </div>
   </div>

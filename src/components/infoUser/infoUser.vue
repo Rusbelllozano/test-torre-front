@@ -6,9 +6,15 @@
         <img :src="user_picture" :alt="user_data.person.name" />
         <div class="main-title__user">
           <h3>
-            {{ user_data.person.name }}
+            {{ user_data.person.name ? user_data.person.name : "no name" }}
           </h3>
-          <p>{{ user_data.person.professionalHeadline }}</p>
+          <p>
+            {{
+              user_data.person.professionalHeadline
+                ? user_data.person.professionalHeadline
+                : "no headline"
+            }}
+          </p>
         </div>
       </div>
       <div class="main-wrapper__strengths-user">

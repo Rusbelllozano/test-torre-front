@@ -1,5 +1,9 @@
 .wrapper__list-empty {
     text-align: center;
+    a{
+        color: #03a9f4;
+        text-decoration: none;
+    }
 }
 .wrapper__list-strengths {
     display: grid;

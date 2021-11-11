@@ -12,6 +12,7 @@ import {
   faCrown,
   faChevronUp,
   faChevronDown,
+  faUserTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -25,6 +26,7 @@ library.add([
   faCrown,
   faChevronUp,
   faChevronDown,
+  faUserTimes,
 ]);
 
 createApp(App)

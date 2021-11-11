@@ -1,0 +1,46 @@
+.main-container__user {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px 0 rgba(163, 163, 163, 0.164);
+    @media (max-width:400px) {
+        padding: 15px;
+    }
+    p {
+      text-align: center;
+    }
+    h3 {
+      text-align: center;
+    }
+  }
+  .main-box__message {
+    text-align: center;
+    svg{
+        font-size: 35px;
+    }
+  }
+  .main-header__user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 20px;
+    img {
+      clip-path: circle();
+      width: 80px;
+      object-fit: contain;
+    }
+    .main-title__user{
+      margin-left: 15px;
+      display: flex;
+      flex-direction: column;
+      h3 {
+        text-align: left;
+        margin: 0;
+      }
+      p {
+        text-align: left;
+        font-size: 14px;
+        margin: 5px 0;
+      }
+    }
+  }

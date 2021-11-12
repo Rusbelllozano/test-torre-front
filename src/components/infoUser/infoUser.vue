@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="main-wrapper__strengths-user">
-        <StrengthsUser :strengths="user_data.strengths" />
+        <StrengthsUser />
       </div>
     </div>
     <div class="main-box__message" v-else>

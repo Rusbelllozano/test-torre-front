@@ -8,10 +8,12 @@
         </button>
         <input type="text" v-model="username" placeholder="username" />
       </div>
-      <div v-if="loading" class="lds-ellipsis">
-        <div></div>
-        <div></div>
-        <div></div>
+      <div v-if="loading_info" id="myModal" class="modal">
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     </form>
   </div>

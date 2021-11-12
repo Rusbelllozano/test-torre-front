@@ -5,6 +5,9 @@ export default createStore({
     user_data: {},
     error_msg: "",
     user_strengths: [],
+    list_user_same_skills: [],
+    opened_modal: false,
+    loading_info: false,
   },
   mutations: {
     setUser(state, user_data) {
@@ -57,14 +60,46 @@ export default createStore({
     openListStrengths(state, index) {
       state.user_strengths[index].open = !this.state.user_strengths[index].open;
     },
+    setListSameSkill(state, list) {
+      state.list_user_same_skills = list;
+    },
+    openModal(state) {
+      state.opened_modal = !state.opened_modal;
+    },
+    changeLoadingStatus(state, value) {
+      state.loading_info = value;
+    },
   },
   actions: {
+    async GET_PEOPLE_SAME_SKILL({ commit }, skill) {
+      try {
+        commit("changeLoadingStatus", true);
+        let list_persons = await axios({
+          method: "post",
+          url: process.env.VUE_APP_API_URL + "get_people_same_skill",
+          data: {
+            "skill/role": skill,
+          },
+        });
+        commit("changeLoadingStatus", false);
+        commit("openModal");
+        commit("setListSameSkill", {
+          ...skill,
+          result: list_persons.data.results.slice(0, 3),
+        });
+        console.log(list_persons.data.results);
+      } catch (e) {
+        commit("setError", "Don't found anything");
+      }
+    },
     async GET_INFO_USER({ commit }, username) {
       try {
+        commit("changeLoadingStatus", true);
         let user_data = await axios({
           method: "get",
           url: process.env.VUE_APP_API_URL + "get_user/" + username,
         });
+        commit("changeLoadingStatus", false);
         commit("setError", "");
         commit("setUser", user_data.data);
         commit("setStrengths", user_data.data.strengths);

@@ -12,11 +12,12 @@
       }"
       v-for="strength in proficiencies.strengths"
       :key="strength.id"
+      @click="openModalSameSkills(strength.name, proficiencies.proficiency)"
     >
       <h3>
         {{ strength.name }}
       </h3>
-      <p>recommendations: {{ strength.recommendations }}</p>
+      <p>Recommendations: {{ strength.recommendations }}</p>
     </div>
   </div>
 </template>

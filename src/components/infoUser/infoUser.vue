@@ -20,6 +20,7 @@
       <div class="main-wrapper__strengths-user">
         <StrengthsUser />
       </div>
+      <ModalSameStrengths v-show="opened_modal" />
     </div>
     <div class="main-box__message" v-else>
       <font-awesome-icon

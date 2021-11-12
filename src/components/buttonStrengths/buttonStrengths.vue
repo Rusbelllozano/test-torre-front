@@ -12,7 +12,7 @@
     @click="openList"
   >
     <div class="title__proficiency">
-      <h3>{{ proficiencies.proficiency }}</h3>
+      <h3>{{ mayusText(proficiencies.proficiency) }}</h3>
       <font-awesome-icon
         v-if="proficiencies.proficiency === 'master'"
         icon="crown"
